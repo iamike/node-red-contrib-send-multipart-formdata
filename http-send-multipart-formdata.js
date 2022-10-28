@@ -74,7 +74,7 @@ module.exports = function(RED) {
                 msg['request-headers'] = headers;
 
                 var formdata = n.formdata.reduce(function(obj, item) {
-                    obj[item.name] = eval(item.value)
+                    obj[item.name] = item.value.startsWith('msg')? eval(item.value):item.value
                     return obj
                 }, {})
 
