@@ -74,7 +74,7 @@ module.exports = function(RED) {
                 msg['request-headers'] = headers;
 
                 var formdata = n.formdata.reduce(function(obj, item) {
-                    obj[item.name] = item.value
+                    obj[item.name] = eval(item.value)
                     return obj
                 }, {})
 
@@ -84,7 +84,7 @@ module.exports = function(RED) {
                     headers: headers,
                     formData: formdata
                 };
-                
+
                 var thisReq = request(options, function(err, resp, body) {
                     // remove sending status
                     node.status({});
